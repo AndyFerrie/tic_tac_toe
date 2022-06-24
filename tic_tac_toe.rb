@@ -12,12 +12,12 @@ class TicTacToe
         player_two = "O"
     end
 
-    def print_board
-        puts " 1 | 2 | 3 "
+    def print_board(placement_array = @placement_array)
+        puts " #{placement_array[0]} | #{placement_array[1]} | #{placement_array[2]} "
         puts "---|---|---"
-        puts " 4 | 5 | 6 "
+        puts " #{placement_array[3]} | #{placement_array[4]} | #{placement_array[5]} "
         puts "---|---|---"
-        puts " 7 | 8 | 9 "
+        puts " #{placement_array[6]} | #{placement_array[7]} | #{placement_array[8]} "
     end
 end
 
