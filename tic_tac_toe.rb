@@ -4,7 +4,7 @@ class TicTacToe
         @board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         @player_one = "X"
         @player_two = "O"
-        @winning_combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [3, 5, 7], [1, 5, 9]]
+        @winning_combinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     end
 
     def print_board(board = @board)
@@ -24,19 +24,11 @@ class TicTacToe
     end 
 
     def check_for_win
-        if board[0] == 'X' and board[1] == 'X' and board[2] == 'X'
-        puts "Player 1 wins!"
-        end
-    end
-
-        
-    def winning_combinations.map do |combination| 
-        count = 0
-        combination.map do |cell|
-            if player_one_moves.include?(cell)
-                count++
-            if count == 3
-                puts "player one wins!"
+        winning_combinations.map do |combination|
+            if board[combination[0]] == "X" and board[combination[1]] == "X" and board[combination[2]] == "X"
+                puts "Player 1 wins!"
+            elsif board[combination[0]] == "O" and board[combination[1]] == "O" and board[combination[2]] == "O"
+                puts "Player 2 wins!"
             end
         end
     end
