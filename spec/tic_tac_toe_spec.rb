@@ -76,6 +76,17 @@ describe "Tic Tac Toe" do
         expect {tictactoe.check_for_win}.to output("Player 1 wins!\n").to_stdout
     end
 
+    it "announces winner when they have 3 cells in a diagonal row" do
+        tictactoe = TicTacToe.new
+        tictactoe.move(player_one, 1)
+        tictactoe.move(player_two, 5)
+        tictactoe.move(player_one, 9)
+        tictactoe.move(player_two, 3)
+        tictactoe.move(player_one, 4)
+        tictactoe.move(player_two, 7)
+        expect {tictactoe.check_for_win}.to output("Player 2 wins!\n").to_stdout
+    end
+
 end
 
       
