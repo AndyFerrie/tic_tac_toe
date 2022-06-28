@@ -7,14 +7,6 @@ describe "Tic Tac Toe" do
         expect(tictactoe.board.length).to eq(9)
     end
 
-    it "creates player one and assigns X" do
-        expect(tictactoe.assign_player_one).to eq("X")
-    end 
-
-    it "creates player two and assigns O" do
-        expect(tictactoe.assign_player_two).to eq("O")
-    end 
-
     it "print board outputs something" do
         expect { tictactoe.print_board }. to output.to_stdout   
     end
@@ -37,35 +29,51 @@ describe "Tic Tac Toe" do
     end
 
     it "updates board when player one makes a move" do
-        player_one = tictactoe.assign_player_one
-        tictactoe.move(player_one, 1)
+        tictactoe.move(tictactoe.player_one, 1)
         expect(tictactoe.board).to eq(['X', '2', '3', '4', '5', '6', '7', '8', '9'])
     end
 
     it "updates cell when player one make a move" do
         tictactoe = TicTacToe.new
-        player_one = tictactoe.assign_player_one
-        tictactoe.move(player_one, 1)
+        tictactoe.move(tictactoe.player_one, 1)
         expect(tictactoe.board[0]).to eq('X')
     end
 
     it "updates board when player one and player two make moves" do
         tictactoe = TicTacToe.new
-        player_one = tictactoe.assign_player_one
-        player_two = tictactoe.assign_player_two
-        tictactoe.move(player_one, 1)
-        tictactoe.move(player_two, 3)
+        tictactoe.move(tictactoe.player_one, 1)
+        tictactoe.move(tictactoe.player_two, 3)
         expect(tictactoe.board).to eq(['X', '2', 'O', '4', '5', '6', '7', '8', '9'])
     end
     
     it "doesn't update board when player two selects the same cell as and player one" do
         tictactoe = TicTacToe.new
-        player_one = tictactoe.assign_player_one
-        player_two = tictactoe.assign_player_two
-        tictactoe.move(player_one, 1)
-        tictactoe.move(player_two, 1)
+        tictactoe.move(tictactoe.player_one, 1)
+        expect {tictactoe.move(tictactoe.player_two, 1)}.to output("Cell already taken\n").to_stdout
         expect(tictactoe.board).to eq(['X', '2', '3', '4', '5', '6', '7', '8', '9'])
     end
+
+    it "announces winner when they have 3 cells in a horizontal row" do
+        tictactoe = TicTacToe.new
+        tictactoe.move(tictactoe.player_one, 1)
+        tictactoe.move(tictactoe.player_two, 4)
+        tictactoe.move(tictactoe.player_one, 2)
+        tictactoe.move(tictactoe.player_two, 5)
+        tictactoe.move(tictactoe.player_one, 3)
+        expect {tictactoe.check_for_win}.to output("Player 1 wins!\n").to_stdout
+    end
+    
+    it "annonces winner when they have 3 cells in a vertical row"
+    tictactoe = TicTacToe.new
+        tictactoe.move(tictactoe.player_one, 2)
+        tictactoe.move(tictactoe.player_two, 1)
+        tictactoe.move(tictactoe.player_one, 5)
+        tictactoe.move(tictactoe.player_two, 9)
+        tictactoe.move(tictactoe.player_one, 8)
+        expect {tictactoe.check_for_win}.to output("Player 1 wins!\n").to_stdout
+    end
+
+  
 end
 
       
