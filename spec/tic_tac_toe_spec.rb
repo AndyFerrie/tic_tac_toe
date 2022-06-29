@@ -4,8 +4,6 @@ require 'stringio'
 describe "Tic Tac Toe" do
 
     game = TicTacToe.new
-    player_one = game.player_one
-    player_two = game.player_two
 
     it "has 9 values in the array" do
         expect(game.board.length).to eq(9)
@@ -33,87 +31,96 @@ describe "Tic Tac Toe" do
     end
 
     it "updates board when player one makes a move" do
-        game.move(game.player_one, 1)
+        game.move(1)
         expect(game.board).to eq(['X', '2', '3', '4', '5', '6', '7', '8', '9'])
     end
 
     it "updates cell when player one make a move" do
         game = TicTacToe.new
-        game.move(game.player_one, 1)
+        game.move(1)
         expect(game.board[0]).to eq('X')
     end
 
     it "updates board when player one and player two make moves" do
         game = TicTacToe.new
-        game.move(player_one, 1)
-        game.move(player_two, 3)
+        game.move(1)
+        game.move(3)
         expect(game.board).to eq(['X', '2', 'O', '4', '5', '6', '7', '8', '9'])
     end
     
     it "doesn't update board when player two selects the same cell as and player one" do
         game = TicTacToe.new
-        game.move(game.player_one, 1)
-        expect {game.move(player_two, 1)}.to output("Cell already taken\n").to_stdout
+        game.move(1)
+        expect {game.move(1)}.to output("Cell already taken\n").to_stdout
         expect(game.board).to eq(['X', '2', '3', '4', '5', '6', '7', '8', '9'])
     end
 
     it "announces winner when they have 3 cells in a horizontal row" do
         game = TicTacToe.new
-        game.move(player_one, 1)
-        game.move(player_two, 4)
-        game.move(player_one, 2)
-        game.move(player_two, 5)
-        game.move(player_one, 3)
+        game.move(1)
+        game.move(4)
+        game.move(2)
+        game.move(5)
+        game.move(3)
         expect {game.check_for_win}.to output("Player 1 wins!\n").to_stdout
     end
     
     it "annonces winner when they have 3 cells in a vertical row" do
         game = TicTacToe.new
-        game.move(player_one, 2)
-        game.move(player_two, 1)
-        game.move(player_one, 5)
-        game.move(player_two, 9)
-        game.move(player_one, 8)
+        game.move(2)
+        game.move(1)
+        game.move(5)
+        game.move(9)
+        game.move(8)
         expect {game.check_for_win}.to output("Player 1 wins!\n").to_stdout
     end
 
     it "announces winner when they have 3 cells in a diagonal row" do
         game = TicTacToe.new
-        game.move(player_one, 1)
-        game.move(player_two, 5)
-        game.move(player_one, 9)
-        game.move(player_two, 3)
-        game.move(player_one, 4)
-        game.move(player_two, 7)
+        game.move(1)
+        game.move(5)
+        game.move(9)
+        game.move(3)
+        game.move(4)
+        game.move(7)
         expect {game.check_for_win}.to output("Player 2 wins!\n").to_stdout
     end
 
     it "announces a draw when no one has won" do
         game = TicTacToe.new
-        game.move(player_one, 1)
-        game.move(player_two, 3)
-        game.move(player_one, 2)
-        game.move(player_two, 5)
-        game.move(player_one, 6)
-        game.move(player_two, 4)
-        game.move(player_one, 9)
-        game.move(player_two, 8)
-        game.move(player_one, 7)
+        game.move(1)
+        game.move(3)
+        game.move(2)
+        game.move(5)
+        game.move(6)
+        game.move(4)
+        game.move(9)
+        game.move(8)
+        game.move(7)
         expect {game.check_for_win}.to output("It's a draw!\n").to_stdout
     end
 
     it "announces a win on a 9 move game" do
         game = TicTacToe.new
-        game.move(player_one, 3)
-        game.move(player_two, 5)
-        game.move(player_one, 9)
-        game.move(player_two, 6)
-        game.move(player_one, 4)
-        game.move(player_two, 7)
-        game.move(player_one, 1)
-        game.move(player_two, 8)
-        game.move(player_one, 2) 
+        game.move(3)
+        game.move(5)
+        game.move(9)
+        game.move(6)
+        game.move(4)
+        game.move(7)
+        game.move(1)
+        game.move(8)
+        game.move(2) 
         expect {game.check_for_win}.to output("Player 1 wins!\n").to_stdout
+    end
+
+    it "returns false when no win or draw" do
+        game = TicTacToe.new
+        game.move(3)
+        game.move(5)
+        game.move(9)
+        game.move(6)
+        expect(game.check_for_win).to eq(false)
     end
 
     it "takes user input" do
@@ -125,25 +132,10 @@ describe "Tic Tac Toe" do
 
     it "converts input to integer and returns valid input" do
         game = TicTacToe.new
-        input = "5"
-        expect(game.check_input(input)).to eq(5)
+        expect(game.check_input("5")).to eq(5)
     end
 
-    #it "returns an error for invalid inputs" do
-        #allow($stdin).to receive(:gets).and_return("10")
-        #$stdin = StringIO.new("11")
-        # input = "11"
-        # expect {game.check_input(input)}.to output(/Invalid input\n/).to_stdout
-        # input = "-2"
-        # expect {game.check_input(input)}.to output(/Invalid input\n/).to_stdout
-        # input = "@"
-        # expect {game.check_input(input)}.to output(/Invalid input\n/).to_stdout
-        # input = "A"
-        # expect {game.check_input(input)}.to output(/Invalid input\n/).to_stdout
-        
-    #end
-
-    it "returns error 2.0" do
+    it "returns false for invalid inputs" do
         expect(game.check_input(10)).to eq(false)
         expect(game.check_input(-9)).to eq(false)
         expect(game.check_input("A")).to eq(false)
@@ -151,6 +143,9 @@ describe "Tic Tac Toe" do
         expect(game.check_input("12")).to eq(false)
         expect(game.check_input("-1")).to eq(false)
     end
+
+
+
 end
 
 
@@ -166,5 +161,4 @@ check for win
 print board
 ask for next input
 announce win, lose, draw
-ask if you want to play again?
 =end
