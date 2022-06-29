@@ -9,11 +9,13 @@ class TicTacToe
     end
 
     def print_board(board = @board)
+        puts "\n"
         puts " #{board[0]} | #{board[1]} | #{board[2]} "
         puts "---|---|---"
         puts " #{board[3]} | #{board[4]} | #{board[5]} "
         puts "---|---|---"
         puts " #{board[6]} | #{board[7]} | #{board[8]} "
+        puts "\n"
     end
 
     def move(player, cell)
@@ -40,9 +42,28 @@ class TicTacToe
             puts "It's a draw!"
         end
     end  
+
+    def user_input
+        puts "enter your move"
+        input = gets.chomp
+        check_input(input)
+    end
+
+    def check_input(input)
+        input 
+        if input.to_i.between?(1, 9)
+            input.to_i
+        else
+            puts "Invalid input"
+            user_input
+        end
+    end
+
 end
 
-
+# game = TicTacToe.new
+# game.print_board
+# game.user_input
 
 
     
