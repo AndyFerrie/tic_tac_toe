@@ -144,9 +144,12 @@ describe "Tic Tac Toe" do
     #end
 
     it "returns error 2.0" do
-        $stdin = 
-        input = $stdin
-        expect {game.check_input(input)}.to output(/Invalid input\n/).to_stdout
+        expect(game.check_input(10)).to eq(false)
+        expect(game.check_input(-9)).to eq(false)
+        expect(game.check_input("A")).to eq(false)
+        expect(game.check_input("@")).to eq(false)
+        expect(game.check_input("12")).to eq(false)
+        expect(game.check_input("-1")).to eq(false)
     end
 end
 

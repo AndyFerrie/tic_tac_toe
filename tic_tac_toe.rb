@@ -46,7 +46,10 @@ class TicTacToe
     def user_input
         puts "enter your move"
         input = gets.chomp
-        check_input(input)
+        if check_input(input) == false
+            puts "Invalid input. Please enter a number between 1 and 9"
+            user_input
+        end
     end
 
     def check_input(input)
@@ -54,8 +57,7 @@ class TicTacToe
         if input.to_i.between?(1, 9)
             input.to_i
         else
-            puts "Invalid input"
-            user_input
+            false
         end
     end
 
