@@ -98,8 +98,37 @@ describe "Tic Tac Toe" do
         tictactoe.move(player_one, 9)
         tictactoe.move(player_two, 8)
         tictactoe.move(player_one, 7)
-        expect {tictactoe.check_for_win}.to output("It's a draw\n").to_stdout
+        expect {tictactoe.check_for_win}.to output("It's a draw!\n").to_stdout
+    end
+
+    it "announces a win on a 9 move game" do
+        tictactoe = TicTacToe.new
+        tictactoe.move(player_one, 3)
+        tictactoe.move(player_two, 5)
+        tictactoe.move(player_one, 9)
+        tictactoe.move(player_two, 6)
+        tictactoe.move(player_one, 4)
+        tictactoe.move(player_two, 7)
+        tictactoe.move(player_one, 1)
+        tictactoe.move(player_two, 8)
+        tictactoe.move(player_one, 2) 
+        expect {tictactoe.check_for_win}.to output("Player 1 wins!\n").to_stdout
     end
 end
 
-      
+
+
+=begin
+start game
+print board
+print instructions
+Ask for an input
+check for valid input
+convert input to integer
+move
+check for win
+print board
+ask for next input
+announce win, lose, draw
+ask if you want to play again?
+=end

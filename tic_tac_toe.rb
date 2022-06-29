@@ -17,7 +17,6 @@ class TicTacToe
     end
 
     def move(player, cell)
-        # move_count = 0
         if board[cell - 1] == 'X' or board[cell - 1] == 'O'
             puts "Cell already taken"
         else
@@ -35,13 +34,12 @@ class TicTacToe
                 puts "Player 2 wins!"
                 return
             end
-            if move_count == 9
-                puts "It's a draw"
-                return
-            end
+            
         end
-    end
-        
+        if move_count == 9
+            puts "It's a draw!"
+        end
+    end  
 end
 
 
