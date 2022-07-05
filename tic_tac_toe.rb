@@ -76,12 +76,3 @@ class TicTacToe
     end
 
 end
-
-# game = TicTacToe.new
-# game.print_board
-# game.user_input
-# game.print_board
-
-
-    
-
