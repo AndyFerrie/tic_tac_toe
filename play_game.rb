@@ -1,6 +1,9 @@
 require_relative "./tic_tac_toe"
 
-puts "Game instructions: \nThe first player is assigned 'X' while the second player is assigned 'O'. \nType the number, that's available on the board, to place your piece. \n\nPress enter to continue"
+puts "Game instructions:\n
+The first player is assigned 'X' while the second player is assigned 'O'.\n
+To choose a square on the board, enter the corresponding number from 1 to 9\nand hit return!\n
+Press enter to continue"
 gets.chomp
 
 game = TicTacToe.new
