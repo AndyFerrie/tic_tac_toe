@@ -25,7 +25,6 @@ class TicTacToe
             board[cell - 1] = player
             @move_count = move_count + 1
         end
-        
     end 
 
     def check_for_win
