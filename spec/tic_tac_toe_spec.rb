@@ -144,21 +144,4 @@ describe "Tic Tac Toe" do
         expect(game.check_input("-1")).to eq(false)
     end
 
-
-
 end
-
-
-=begin
-start game
-print board
-print instructions
-Ask for an input
-check for valid input
-convert input to integer
-move
-check for win
-print board
-ask for next input
-announce win, lose, draw
-=end
