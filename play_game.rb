@@ -1,6 +1,14 @@
 require_relative "./tic_tac_toe"
 
-puts "Game instructions:\n
+puts "
+ _______ _        _______           _______                
+|__   __(_)      |__   __|         |__   __|          
+   | |   _  ___     | | __ _  ___     | | ___   ___ 
+   | |  | |/ __|    | |/ _` |/ __|    | |/ _ \\ / _ \\
+   | |  | | (__     | | (_| | (__     | | (_) |  __/
+   |_|  |_|\\___|    |_|\\__,_|\\___|    |_|\\___/ \\___|
+                                                    
+Game instructions:\n
 The first player is assigned 'X' while the second player is assigned 'O'.\n
 To choose a square on the board, enter the corresponding number from 1 to 9\nand hit return!\n
 Press enter to continue"
