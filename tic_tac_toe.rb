@@ -16,13 +16,7 @@ class TicTacToe
         puts "\n"
     end
 
-    def move(cell)
-
-        if move_count.even? == true
-            player = 'X'
-        else
-            player = 'O'
-        end
+    def move(cell, player)
 
         if board[cell - 1] == 'X' or board[cell - 1] == 'O'
             puts "Cell already taken\n"
@@ -50,14 +44,21 @@ class TicTacToe
     end  
 
     def user_input
-        puts "enter your move\n"
+
+        if move_count.even? == true
+            player = 'X'
+        else
+            player = 'O'
+        end
+
+        puts "#{player} enter your move\n"
         input = gets.chomp
         stringToInt = check_input(input)
         if  stringToInt == false
             puts "Invalid input. Please enter a number between 1 and 9\n"
             user_input
         else
-            move(stringToInt)
+            move(stringToInt, player)
         end
     end
 
