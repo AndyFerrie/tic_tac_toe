@@ -20,6 +20,7 @@ class TicTacToe
 
         if board[cell - 1] == 'X' or board[cell - 1] == 'O'
             puts "Cell already taken\n"
+            false
         else
             board[cell - 1] = player
             @move_count = move_count + 1
@@ -30,12 +31,15 @@ class TicTacToe
     def check_for_win
         winning_combinations.map do |combination|
             if board[combination[0]] == "X" and board[combination[1]] == "X" and board[combination[2]] == "X"
+                print_board
                 puts "Player 1 wins!\n"
                 return
             elsif board[combination[0]] == "O" and board[combination[1]] == "O" and board[combination[2]] == "O"
+                print_board
                 puts "Player 2 wins!\n"
                 return
             elsif move_count == 9
+                print_board
                 puts "It's a draw!\n"
                 return
             end

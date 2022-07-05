@@ -62,7 +62,7 @@ describe "Tic Tac Toe" do
         game.move(2, 'X')
         game.move(5, 'O')
         game.move(3, 'X')
-        expect {game.check_for_win}.to output("Player 1 wins!\n").to_stdout
+        expect {game.check_for_win}.to output(/Player 1 wins!/).to_stdout
     end
     
     it "annonces winner when they have 3 cells in a vertical row" do
@@ -72,7 +72,7 @@ describe "Tic Tac Toe" do
         game.move(5, 'X')
         game.move(9, 'O')
         game.move(8, 'X')
-        expect {game.check_for_win}.to output("Player 1 wins!\n").to_stdout
+        expect {game.check_for_win}.to output(/Player 1 wins!/).to_stdout
     end
 
     it "announces winner when they have 3 cells in a diagonal row" do
@@ -83,7 +83,7 @@ describe "Tic Tac Toe" do
         game.move(3, "O")
         game.move(4, "X")
         game.move(7, "O")
-        expect {game.check_for_win}.to output("Player 2 wins!\n").to_stdout
+        expect {game.check_for_win}.to output(/Player 2 wins!/).to_stdout
     end
 
     it "announces a draw when no one has won" do
@@ -97,7 +97,7 @@ describe "Tic Tac Toe" do
         game.move(9, "X")
         game.move(8, "O")
         game.move(7, "X")
-        expect {game.check_for_win}.to output("It's a draw!\n").to_stdout
+        expect {game.check_for_win}.to output(/It's a draw!/).to_stdout
     end
 
     it "announces a win on a 9 move game" do
@@ -111,7 +111,7 @@ describe "Tic Tac Toe" do
         game.move(1, "X")
         game.move(8, "O")
         game.move(2, "X") 
-        expect {game.check_for_win}.to output("Player 1 wins!\n").to_stdout
+        expect {game.check_for_win}.to output(/Player 1 wins!/).to_stdout
     end
 
     it "returns false when no win or draw" do
