@@ -1,9 +1,11 @@
 # Tic Tac Toe
 
 ## How project was set up
-`bundle init`
-`bundle add rspec --skip-install`
-`bundle install --path vendor/bundle`
+```
+bundle init
+bundle add rspec --skip-install
+bundle install --path vendor/bundle
+```
 
 ## To set up project after cloning
 `bundle install --path vendor/bundle`
