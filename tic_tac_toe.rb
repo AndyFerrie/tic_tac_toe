@@ -1,9 +1,10 @@
 class TicTacToe
-    attr_accessor :board, :winning_combinations, :move_count
+    attr_accessor :board, :winning_combinations, :move_count, :available_cells
     def initialize
         @board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         @move_count = 0
         @winning_combinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+        @available_cells = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
     end
 
     def print_board(board = @board)
@@ -23,6 +24,7 @@ class TicTacToe
             false
         else
             board[cell - 1] = player
+            available_cells.delete(cell.to_s)
             @move_count = move_count + 1
         end
     end 
@@ -72,6 +74,10 @@ class TicTacToe
         else
             false
         end
+    end
+
+    def choose_cell
+        available_cells.sample
     end
 
 end

@@ -31,47 +31,47 @@ describe "Tic Tac Toe" do
     end
 
     it "updates board when player one makes a move" do
-        game.move(1, 'X')
-        expect(game.board).to eq(['X', '2', '3', '4', '5', '6', '7', '8', '9'])
+        game.move(1, "X")
+        expect(game.board).to  eq(["X", "2", "3", "4", "5", "6", "7", "8", "9"])
     end
 
     it "updates cell when player one make a move" do
         game = TicTacToe.new
-        game.move(1, 'X')
-        expect(game.board[0]).to eq('X')
+        game.move(1, "X")
+        expect(game.board[0]).to eq("X")
     end
 
     it "updates board when player one and player two make moves" do
         game = TicTacToe.new
-        game.move(1,'X')
-        game.move(3, 'O')
-        expect(game.board).to eq(['X', '2', 'O', '4', '5', '6', '7', '8', '9'])
+        game.move(1,"X")
+        game.move(3, "O")
+        expect(game.board).to eq(["X", "2", "O", "4", "5", "6", "7", "8", "9"])
     end
     
     it "doesn't update board when player two selects the same cell as and player one" do
         game = TicTacToe.new
-        game.move(1, 'X')
-        expect {game.move(1, 'X')}.to output("Cell already taken\n").to_stdout
-        expect(game.board).to eq(['X', '2', '3', '4', '5', '6', '7', '8', '9'])
+        game.move(1, "X")
+        expect {game.move(1, "X")}.to output("Cell already taken\n").to_stdout
+        expect(game.board).to eq(["X", "2", "3", "4", "5", "6", "7", "8", "9"])
     end
 
     it "announces winner when they have 3 cells in a horizontal row" do
         game = TicTacToe.new
-        game.move(1, 'X')
-        game.move(4, 'O')
-        game.move(2, 'X')
-        game.move(5, 'O')
-        game.move(3, 'X')
+        game.move(1, "X")
+        game.move(4, "O")
+        game.move(2, "X")
+        game.move(5, "O")
+        game.move(3, "X")
         expect {game.check_for_win}.to output(/Player 1 wins!/).to_stdout
     end
     
     it "annonces winner when they have 3 cells in a vertical row" do
         game = TicTacToe.new
-        game.move(2, 'X')
-        game.move(1, 'O')
-        game.move(5, 'X')
-        game.move(9, 'O')
-        game.move(8, 'X')
+        game.move(2, "X")
+        game.move(1, "O")
+        game.move(5, "X")
+        game.move(9, "O")
+        game.move(8, "X")
         expect {game.check_for_win}.to output(/Player 1 wins!/).to_stdout
     end
 
@@ -144,4 +144,20 @@ describe "Tic Tac Toe" do
         expect(game.check_input("-1")).to eq(false)
     end
 
+    it "has an array of available moves which initially holds 9 values" do
+        expect(game.available_cells.length).to eq(9)
+    end
+
+    it "decrements the array of available cells when a move is made" do
+        game = TicTacToe.new
+        game.move(3, "X")
+        expect(game.available_cells.length).to eq(8)
+        expect(game.available_cells).to eq(["1", "2", "4", "5", "6", "7", "8", "9"])
+    end
+
+    it "chooses a random array item from available cells" do
+        expect(game.choose_cell).to be_a(String)
+        expect(game.choose_cell).to match(/[1-9]/)
+    end
 end
+
