@@ -1,9 +1,24 @@
+class Player
+    attr_accessor :name, :human, :marker
+    def initialize(name, human, marker)
+        
+        @name = name
+        @human = human
+        @marker = marker
+        
+    end
+
+end
+
 class TicTacToe
-    attr_accessor :board, :winning_combinations, :move_count
+    attr_accessor :board, :winning_combinations, :move_count, :available_cells, :player1, :player2
     def initialize
         @board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         @move_count = 0
         @winning_combinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+        @available_cells = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        @player1 = player1
+        @player2 = player2
     end
 
     def print_board(board = @board)
@@ -23,6 +38,7 @@ class TicTacToe
             false
         else
             board[cell - 1] = player
+            available_cells.delete(cell.to_s)
             @move_count = move_count + 1
         end
     end 
@@ -66,12 +82,15 @@ class TicTacToe
     end
 
     def check_input(input)
-        input 
         if input.to_i.between?(1, 9)
             input.to_i
         else
             false
         end
+    end
+
+    def choose_cell
+        available_cells.sample
     end
 
 end
