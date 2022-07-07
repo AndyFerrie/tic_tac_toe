@@ -159,5 +159,16 @@ describe "Tic Tac Toe" do
         expect(game.choose_cell).to be_a(String)
         expect(game.choose_cell).to match(/[1-9]/)
     end
+
+    it "initialises players with name, human boolean and marker" do
+        name = "Andy"
+        human = true
+        marker = "X"
+        player1 = Player.new(name, human, marker)
+        expect(player1.name).to eq("Andy")
+        expect(player1.human).to eq(true)
+        expect(player1.marker).to eq("X")
+    end
+    
 end
 
